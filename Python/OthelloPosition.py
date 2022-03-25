@@ -50,7 +50,7 @@ class OthelloPosition(object):
         self.board[self.BOARD_SIZE // 2 + 1][self.BOARD_SIZE // 2] = 'B'
         self.maxPlayer = True
 
-    def make_move(self, action):
+    def make_move(self, action, row, col):
         """
         Perform the move suggested by the OhelloAction action and return the new position. Observe that this also
         changes the player to move next.
@@ -58,6 +58,15 @@ class OthelloPosition(object):
         :return: The OthelloPosition resulting from making the move action in the current position.
         """
         # TODO: write the code for this method and whatever helper methods it need
+        tilesToFlip = self.__is_move(self, row, col)
+
+        if tilesToFlip == False:
+            return False
+
+        for row, col in tilesToFlip:
+            self.board[row][col] = action
+
+        return True
 
     def get_moves(self):
         """
