@@ -50,7 +50,7 @@ class OthelloPosition(object):
         self.board[self.BOARD_SIZE // 2 + 1][self.BOARD_SIZE // 2] = 'B'
         self.maxPlayer = True
 
-    def make_move(self, action, row, col):
+    def make_move(self, action, row=None, col=None, __has_neighbour=None):
         """
         Perform the move suggested by the OhelloAction action and return the new position. Observe that this also
         changes the player to move next.
@@ -58,15 +58,48 @@ class OthelloPosition(object):
         :return: The OthelloPosition resulting from making the move action in the current position.
         """
         # TODO: write the code for this method and whatever helper methods it need
-        tilesToFlip = self.__is_move(self, row, col)
+        # action = []
+        convert = []
 
-        if tilesToFlip == False:
-            return False
+        # For all the generated neighbours, determine if they form a line
+        # If a line is formed, we will add it to the convert array
+        for neighbour in __has_neighbour:
+            neighX = neighbour[0]
+            neighY = neighbour[1]
+            # Check if the neighbour is of a different colour - it must be to form a line
+            if action[neighX][neighY] != self.board[row][col]:
+                # The path of each individual line
+                path = []
 
-        for row, col in tilesToFlip:
-            self.board[row][col] = action
+                # Determining direction to move
+                deltaX = neighX - row
+                deltaY = neighY - col
 
-        return True
+                tempX = neighX
+                tempY = neighY
+
+                # While we are in the bounds of the board
+                while 0 <= tempX <= 7 and 0 <= tempY <= 7:
+                    path.append([tempX, tempY])
+                    value = action[tempX][tempY]
+                    # If we reach a blank tile, we're done and there's no line
+                    if value == None:
+                        break
+                    # If we reach a tile of the player's colour, a line is formed
+                    if value == self.board[row][col]:
+                        # Append all of our path nodes to the convert array
+                        for node in path:
+                            convert.append(node)
+                        break
+                    # Move the tile
+                    tempX += deltaX
+                    tempY += deltaY
+
+        # Convert all the appropriate tiles
+        for node in convert:
+            action[node[0]][node[1]] = self.board[row][col]
+
+        return action
 
     def get_moves(self):
         """
