@@ -1,15 +1,18 @@
-from AlphaBeta import AlphaBeta
 from CountingEvaluator import CountingEvaluator
-from OthelloAction import OthelloAction
 from OthelloPosition import OthelloPosition
 
 
 class Othello:
-    def __init__(self, othello_position, alpha_beta, othello_action, value):
-        value = "WEEEEEEEEEEEEEEEEEEEEEEEEEEEOXEEEEEEXOEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-        othello_action = OthelloAction.print_move
-        othello_position = OthelloPosition.print_board
-        alpha_beta = AlphaBeta.evaluate(CountingEvaluator)
+    def othello(black_strategy, white_strategy):
+        #
+        board = OthelloPosition.initialize()
+        player = 'B'
+        strategy = lambda who: black_strategy if who == 'B' else white_strategy
+        while player is not None:
+            move = OthelloPosition.get_moves(board)
+            OthelloPosition.make_move(move, player, board)
+            player = OthelloPosition.to_move(board)
+        return board, CountingEvaluator.evaluate(board)
 
 
 

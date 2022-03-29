@@ -6,7 +6,7 @@
 # usage: bash othello <position> <time_limit> <do_compile>
 #
 # Author: Ola Ringdahl
-
+#WEEEEEEEEEEEEEEEEEEEEEEEEEEEOXEEEEEEXOEEEEEEEEEEEEEEEEEEEEEEEEEEE
 position="WEEEEEEEEEEEEEEEEEEEEEEEEEEEOXEEEEEEXOEEEEEEEEEEEEEEEEEEEEEEEEEEE"
 time_limit=5
 do_compile=3
