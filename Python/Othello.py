@@ -1,18 +1,18 @@
 from CountingEvaluator import CountingEvaluator
+from OthelloAction import OthelloAction
 from OthelloPosition import OthelloPosition
+from AlphaBeta import AlphaBeta
+import sys
 
+if __name__ == "__main__":
+    othello_position = sys.argv[1]
+    time_limit = sys.argv[2]
 
-class Othello:
-    def othello(black_strategy, white_strategy):
-        #
-        board = OthelloPosition.initialize()
-        player = 'B'
-        strategy = lambda who: black_strategy if who == 'B' else white_strategy
-        while player is not None:
-            move = OthelloPosition.get_moves(board)
-            OthelloPosition.make_move(move, player, board)
-            player = OthelloPosition.to_move(board)
-        return board, CountingEvaluator.evaluate(board)
-
-
-
+    board = OthelloPosition(othello_position)
+    # board.initialize()
+    counting_evaluate = CountingEvaluator()
+    alpha_beta = AlphaBeta.set_evaluator(board, counting_evaluate)
+    othello_action = AlphaBeta.evaluate(board, othello_position)
+    print(f"these are the arguments {sys.argv}")
+    print(f"othello action {othello_action}")
+    print(board)
