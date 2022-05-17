@@ -7,9 +7,9 @@
 #
 # Author: Ola Ringdahl
 #WEEEEEEEEEEEEEEEEEEEEEEEEEEEOXEEEEEEXOEEEEEEEEEEEEEEEEEEEEEEEEEEE
-position="WEEEEEEEEEEEEEEEEEEEEEEEEEEEOXEEEEEEXOEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-time_limit=5
-do_compile=3
+position=$1
+time_limit=$2
+do_compile=$3
 
 if [ "$#" -ne 3 ]; then
 	# do_compile not set (not enough input arguments)

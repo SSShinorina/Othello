@@ -25,4 +25,7 @@ class AlphaBeta(OthelloAlgorithm):
 
     def evaluate(self, othello_position):
         self.position = othello_position
+        #doing minmax search
+
+        # return best_action
         # TODO: implement the alpha-beta algorithm
